@@ -2,18 +2,18 @@
 CXX = g++
 
 # Compiler flags
-CXXFLAGS = -Wall -g 
+CXXFLAGS = -Wall -g
 
 # Target executable
-TARGET = main
+TARGET = ../temp/main
 
 # Source and Header directories
-SRC_DIR = Source
-HEADER_DIR = Headers
-FILES_DIR = temp
+SRC_DIR = .
+HEADER_DIR = ../Headers
+FILES_DIR = ../temp
 
 # Source files
-SRCS = main.cpp \
+SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/courseinfo.cpp \
        $(SRC_DIR)/filehandler.cpp \
        $(SRC_DIR)/node.cpp \
@@ -32,16 +32,16 @@ HEADERS = $(HEADER_DIR)/courseinfo.h \
 all: $(TARGET)
 
 # Rule to link object files into the target executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+$(TARGET): $(OBJS) | $(FILES_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
 # Rule to compile .cpp files into .o files
-$(FILES_DIR)/%.o: %.cpp $(HEADERS)
+$(FILES_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) | $(FILES_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Rule to compile .cpp files from Source folder
-$(FILES_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Rule to create the temp directory if it doesn't exist
+$(FILES_DIR):
+	mkdir -p $(FILES_DIR)
 
 # Rule to run the executable with input file
 run: $(TARGET)

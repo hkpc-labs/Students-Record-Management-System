@@ -1,23 +1,14 @@
-#ifndef COURSEINFO_H
+#ifndef  COURSEINFO_H
 #define COURSEINFO_H
-
-class CourseInfo {
+class courses {
 private:
-    int courseId;      // Mutable
-    float marks;       // Mutable
-
+	int courseId;
+	float marks;
 public:
-    // Constructor
-    CourseInfo(int courseId = 0, float marks = 0.0);
-    
-    // Getters
-    int getCourseId() ;
-    float getMarks();
-    
-    // Setters
-    void setCourseId(int newCourseId);
-    void setMarks(float newMarks);
-    
+	courses(int courseId = 0, float marks = 0.0);
+	int getCourseId();
+	float getMarks();
+	void setCourseId(int newCourseId);
+	void setMarks(float newMarks);
 };
-
-#endif
+#endif // ! "courseinfo.h"

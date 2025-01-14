@@ -1,29 +1,20 @@
-// nodeoperations.h
-#ifndef NODEOPERATIONS_H
-#define NODEOPERATIONS_H
-
+#ifndef NODE_OPERATIONS_H
+#define NODE_OPERATIONS_H
 #include "node.h"
-
-class NodeOperations {
+#include <string>
+class node_operations {
 private:
-    static Node* findStudent(Node* head, int rollNo);
-
-public:    
-    // Student Operations
-    static bool insertStudent(Node*& head, int rollNo, const std::string& name, 
-                            float cgpa, int numSubjects, CourseInfo* courses);
-    static bool deleteStudent(Node*& head, int rollNo);
-    static bool modifyStudentCGPA(Node* head, int rollNo, float newCGPA);
-    static bool modifyStudentSubjects(Node* head, int rollNo, int newNumSubjects);
-    
-    // Course Operations
-    static bool addCourse(Node* head, int rollNo, int courseId, float marks);
-    static bool modifyCourse(Node* head, int rollNo, int courseId, float newMarks);
-    static bool modifyCourseId(Node* head, int rollNo, int oldCourseId, int newCourseId);
-    static bool deleteCourse(Node* head, int rollNo, int courseId);
-    
-    // Display Function
-    static void displayAll(Node* head);
+	static node* firstStudent(node* head, int rollNo);
+public:
+	static bool addStudent(node*& head, int rollNo, std::string name, float cgpa, int numOfCourses, courses* course);
+	static bool deleteStudent(node*& head, int rollNo);
+	static node* findStudent(node*& head, int rollNo);
+	static void displayStudents(node* head);
+	static bool modifyStudentCGPA(node*& head, int rollNo, float cgpa);
+	static bool modifyStudentCourses(node*& head, int numOfCourses, int rollNo);
+	static bool addCourse(node*& head, int rollNo, int courseId, float marks);
+	static bool deleteCourse(node*& head, int rollNo, int courseId);
+	static bool updateCourseMarks(node*& head, int rollNo, int courseId, float newMarks);
+	static bool updateCourseId(node*& head, int rollNo, int courseId, int newCourseId);
 };
-
 #endif
